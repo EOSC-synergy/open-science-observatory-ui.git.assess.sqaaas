@@ -1,0 +1,52 @@
+config:
+  credentials: []
+  project_repos:
+    code-repo.d4science.org/MaDgIK/open-science-observatory-ui:
+      branch: master
+      repo: https://code-repo.d4science.org/MaDgIK/open-science-observatory-ui.git
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: release/1.7.11
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      code-repo.d4science.org/MaDgIK/open-science-observatory-ui git:
+        commands:
+        - /usr/bin/env sh .sqa/script.craggy-mustard-caterpillar.sh
+        container: qc.acc_paltry-khaki-loon
+  QC.Doc:
+    repos:
+      code-repo.d4science.org/MaDgIK/open-science-observatory-ui find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.smelly-green-wallaby.sh
+        container: qc.doc_seedy-jade-audemer
+      code-repo.d4science.org/MaDgIK/open-science-observatory-ui git:
+        commands:
+        - /usr/bin/env sh .sqa/script.pasty-charcoal-balinese.sh
+        container: qc.doc_seedy-russet-bracke
+      code-repo.d4science.org/MaDgIK/open-science-observatory-ui markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.pokey-emerald-paradise.sh
+        container: qc.doc_hazy-silver-cuttlefish
+  QC.Lic:
+    repos:
+      code-repo.d4science.org/MaDgIK/open-science-observatory-ui licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.homely-purple-leopard.sh
+        container: qc.lic_boozy-indigo-chameleon
+  QC.Sty:
+    repos:
+      code-repo.d4science.org/MaDgIK/open-science-observatory-ui jsonlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.flimsy-khaki-capybara.sh
+        container: qc.sty_muzzy-maroon-buffalo
+  QC.Ver:
+    repos:
+      code-repo.d4science.org/MaDgIK/open-science-observatory-ui get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.zippy-green-mau.sh
+        container: qc.ver_ugly-green-grouse
+timeout: 5400
